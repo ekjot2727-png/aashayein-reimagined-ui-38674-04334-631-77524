@@ -1,0 +1,313 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Base - Soft Cream & Deep Indigo for sunrise theme */
+    --background: 48 77% 94%;
+    --foreground: 234 65% 29%;
+
+    /* Card backgrounds - Pure white for contrast */
+    --card: 0 0% 100%;
+    --card-foreground: 234 65% 29%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 234 65% 29%;
+
+    /* Primary - Sunrise Gold for main CTAs (#F9A826) */
+    --primary: 38 94% 56%;
+    --primary-foreground: 234 65% 29%;
+    --primary-hover: 38 94% 51%;
+    --primary-active: 38 94% 46%;
+
+    /* Secondary - Vibrant Magenta for warmth & compassion (#D81B60) */
+    --secondary: 339 77% 48%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 339 77% 43%;
+
+    /* Muted backgrounds - Lighter cream tones */
+    --muted: 48 77% 90%;
+    --muted-foreground: 234 45% 45%;
+
+    /* Accent - Vibrant Magenta */
+    --accent: 339 77% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 339 77% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 48 40% 85%;
+    --input: 48 40% 88%;
+    --ring: 38 94% 56%;
+
+    --radius: 0.875rem;
+
+    /* Sunrise Theme Color Tokens */
+    --navy-deep: 234 65% 24%;
+    --navy-base: 234 65% 29%;
+    --navy-light: 234 55% 40%;
+    --navy-ultra: 234 65% 20%;
+    
+    --blood-red: 339 77% 48%;
+    --blood-red-hover: 339 77% 43%;
+    --blood-red-glow: 339 77% 55%;
+    --blood-red-light: 339 77% 95%;
+    
+    --cyan-bright: 190 100% 50%;
+    --cyan-glow: 190 100% 60%;
+    
+    --success-green: 142 76% 45%;
+    --success-light: 142 76% 95%;
+    
+    --sunrise-gold: 38 94% 56%;
+    --sunrise-gold-light: 38 94% 95%;
+    
+    /* Sunrise Theme Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(234 65% 20%) 0%, hsl(234 65% 26%) 50%, hsl(234 65% 32%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(48 77% 96%) 100%);
+    --gradient-blood: linear-gradient(135deg, hsl(339 77% 48%) 0%, hsl(339 77% 43%) 100%);
+    --gradient-blood-soft: linear-gradient(135deg, hsl(339 77% 98%) 0%, hsl(339 77% 95%) 100%);
+    --gradient-cyan: linear-gradient(135deg, hsl(190 100% 50%) 0%, hsl(190 100% 60%) 100%);
+    --gradient-navy: linear-gradient(135deg, hsl(234 65% 29%) 0%, hsl(234 65% 24%) 100%);
+    --gradient-sunrise: linear-gradient(135deg, hsl(38 94% 56%) 0%, hsl(339 77% 48%) 100%);
+    --gradient-shimmer: linear-gradient(90deg, transparent, hsla(38, 94%, 56%, 0.1), transparent);
+    
+    /* Sunrise Theme Shadows - Warm depth */
+    --shadow-xs: 0 1px 2px 0 hsla(234, 65%, 29%, 0.04);
+    --shadow-sm: 0 2px 4px -1px hsla(234, 65%, 29%, 0.05);
+    --shadow-md: 0 4px 6px -1px hsla(234, 65%, 29%, 0.07), 0 2px 4px -1px hsla(234, 65%, 29%, 0.03);
+    --shadow-lg: 0 10px 15px -3px hsla(234, 65%, 29%, 0.09), 0 4px 6px -2px hsla(234, 65%, 29%, 0.04);
+    --shadow-xl: 0 20px 25px -5px hsla(234, 65%, 29%, 0.11), 0 10px 10px -5px hsla(234, 65%, 29%, 0.03);
+    --shadow-2xl: 0 25px 50px -12px hsla(234, 65%, 29%, 0.13);
+    --shadow-elevated: 0 12px 40px -10px hsla(234, 65%, 29%, 0.1);
+    --shadow-blood: 0 10px 30px -8px hsla(339, 77%, 48%, 0.25);
+    --shadow-blood-hover: 0 14px 35px -8px hsla(339, 77%, 48%, 0.35);
+    --shadow-cyan: 0 10px 30px -8px hsla(190, 100%, 50%, 0.25);
+    --shadow-glow: 0 0 40px hsla(38, 94%, 56%, 0.15);
+    --shadow-glow-pulse: 0 0 60px hsla(38, 94%, 56%, 0.25);
+    
+    /* Premium Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-gentle: all 0.25s ease-out;
+    --transition-snappy: all 0.15s ease-in-out;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 215 40% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 215 35% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 215 35% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 100% 63%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 190 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 215 30% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 190 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 30% 22%;
+    --input: 215 30% 22%;
+    --ring: 0 100% 63%;
+    
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+    letter-spacing: -0.01em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Clean spacing utilities */
+  .section-padding {
+    @apply py-32 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-clean {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Enhanced Animations */
+  .pulse-urgent {
+    animation: pulse-urgent 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse-urgent {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 0 0 hsla(339, 77%, 48%, 0.6);
+    }
+    50% {
+      opacity: 0.95;
+      box-shadow: 0 0 0 12px hsla(339, 77%, 48%, 0);
+    }
+  }
+  
+  /* Button Hover Lift Effect */
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .hover-lift:active {
+    transform: translateY(0);
+  }
+  
+  /* GPS Pulse Animation */
+  .gps-pulse {
+    animation: gps-pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes gps-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+  
+  /* Shimmer Effect for Loading */
+  .shimmer {
+    background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  /* Success Checkmark Animation */
+  .success-pop {
+    animation: success-pop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  @keyframes success-pop {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Card Hover Enhancement */
+  .card-interactive {
+    transition: var(--transition-smooth);
+    cursor: pointer;
+  }
+  
+  .card-interactive:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  /* Progress Line Fill Animation */
+  .progress-fill {
+    animation: progress-fill 1s ease-out forwards;
+  }
+  
+  @keyframes progress-fill {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-blood {
+    background: var(--gradient-blood);
+  }
+  
+  .gradient-cyan {
+    background: var(--gradient-cyan);
+  }
+  
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  .shadow-blood {
+    box-shadow: var(--shadow-blood);
+  }
+  
+  .shadow-cyan {
+    box-shadow: var(--shadow-cyan);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+}
