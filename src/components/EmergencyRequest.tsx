@@ -7,6 +7,7 @@ import { AlertCircle, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { indianStates, citiesByState } from "@/utils/indianLocations";
+import { useNavigate } from "react-router-dom";
 
 interface EmergencyRequestProps {
   onSuccess?: () => void;
@@ -14,6 +15,7 @@ interface EmergencyRequestProps {
 
 const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     bloodType: "",
     units: "",
@@ -26,8 +28,28 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
 
   const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
+  const isFormValid = () => {
+    return (
+      formData.bloodType &&
+      formData.units &&
+      formData.patientName.trim() &&
+      formData.hospitalName.trim() &&
+      formData.contactNumber.trim() &&
+      formData.state &&
+      formData.city
+    );
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isFormValid()) {
+      toast({
+        title: "Incomplete Form",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
     toast({
       title: "Emergency Request Submitted",
       description: "Our team will contact you within 15 minutes.",
@@ -35,6 +57,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
     if (onSuccess) {
       onSuccess();
     }
+    navigate("/tracker");
   };
 
   return (
@@ -211,6 +234,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
                 type="submit"
                 size="lg"
                 className="w-full pulse-urgent shadow-blood text-lg font-semibold"
+                disabled={!isFormValid()}
               >
                 Submit Emergency Request
               </Button>

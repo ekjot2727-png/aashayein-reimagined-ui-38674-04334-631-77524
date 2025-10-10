@@ -12,12 +12,10 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import { indianStates, citiesByState } from "@/utils/indianLocations";
-import { Link } from "react-router-dom";
 
 const RegisterDonor = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const [showDashboardLink, setShowDashboardLink] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -32,13 +30,35 @@ const RegisterDonor = () => {
 
   const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
+  const isFormValid = () => {
+    return (
+      formData.fullName.trim() &&
+      formData.email.trim() &&
+      formData.phone.trim() &&
+      formData.bloodType &&
+      formData.dateOfBirth &&
+      formData.address.trim() &&
+      formData.city &&
+      formData.state &&
+      formData.pincode.trim()
+    );
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isFormValid()) {
+      toast({
+        title: "Incomplete Form",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
     toast({
       title: "Registration Successful!",
       description: "Welcome to the Aashayein family.",
     });
-    setShowDashboardLink(true);
+    navigate("/donor-dashboard");
   };
 
   return (
@@ -216,19 +236,13 @@ const RegisterDonor = () => {
                     type="submit"
                     size="lg"
                     className="w-full shadow-blood text-lg font-semibold"
+                    disabled={!isFormValid()}
                   >
                     Register as Donor
                   </Button>
                 </div>
               </form>
             </Card>
-            {showDashboardLink && (
-              <div className="text-center mt-8">
-                <Button size="lg" asChild>
-                  <Link to="/donor-dashboard">Go to Donor Dashboard</Link>
-                </Button>
-              </div>
-            )}
           </div>
         </section>
       </main>

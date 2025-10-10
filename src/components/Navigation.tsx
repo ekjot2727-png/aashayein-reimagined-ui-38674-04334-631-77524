@@ -30,8 +30,8 @@ const Navigation = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-gradient-to-r from-sunrise-gold/20 via-card/95 to-sunrise-gold/20 backdrop-blur-lg shadow-elevated border-b border-sunrise-gold/30"
-          : "bg-gradient-to-r from-sunrise-gold/15 via-card/80 to-sunrise-gold/15 backdrop-blur-sm"
+          ? "bg-gradient-to-r from-sunrise-gold/40 via-sunrise-gold/20 to-sunrise-gold/40 backdrop-blur-lg shadow-elegant border-b border-sunrise-gold/50"
+          : "bg-gradient-to-r from-sunrise-gold/30 via-sunrise-gold/15 to-sunrise-gold/30 backdrop-blur-md"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
