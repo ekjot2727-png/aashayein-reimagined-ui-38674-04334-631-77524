@@ -56,15 +56,16 @@ const Navigation = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-smooth relative group ${
+                className={`text-sm font-semibold transition-smooth relative group ${
                   location.pathname === link.path
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(249,168,38,0.6)]"
+                    : "text-[hsl(var(--sunrise-gold))] hover:text-[hsl(var(--sunrise-gold))] hover:drop-shadow-[0_0_12px_rgba(249,168,38,0.8)]"
                 }`}
+                style={{ textShadow: location.pathname === link.path ? '0 0 10px rgba(249, 168, 38, 0.5)' : '' }}
               >
                 {link.name}
                 <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-smooth ${
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-[hsl(var(--sunrise-gold))] shadow-glow transition-smooth ${
                     location.pathname === link.path ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -85,7 +86,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(249,168,38,0.6)]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -105,10 +106,10 @@ const Navigation = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-sm font-medium py-2 ${
+                  className={`text-sm font-semibold py-2 ${
                     location.pathname === link.path
-                      ? "text-primary"
-                      : "text-muted-foreground"
+                      ? "text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(249,168,38,0.6)]"
+                      : "text-[hsl(var(--sunrise-gold))]"
                   }`}
                 >
                   {link.name}
