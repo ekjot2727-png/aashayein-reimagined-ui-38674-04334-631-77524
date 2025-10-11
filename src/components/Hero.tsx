@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Heart, Activity } from "lucide-react";
+import { Heart, Activity } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
 
 const Hero = () => {
@@ -16,10 +16,10 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-navy-deep/95 via-navy-base/90 to-navy-deep/95" />
       </div>
 
-      {/* Animated Elements */}
+      {/* Animated Elements - Enhanced Heartbeat */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       {/* Content */}
@@ -35,9 +35,9 @@ const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold text-white mb-8 tracking-tighter leading-none">
-            Connecting Saviours.
+            <span className="inline-block animate-fade-in">Connecting Saviours.</span>
             <br />
-            <span className="bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+            <span className="inline-block bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent animate-fade-in" style={{ animationDelay: '200ms' }}>
               Delivering Hope.
             </span>
           </h1>
@@ -56,9 +56,9 @@ const Hero = () => {
               asChild
               className="pulse-urgent shadow-blood text-base px-10 py-7 font-semibold group rounded-full"
             >
-              <Link to="/request">
+              <Link to="/request" className="flex items-center">
+                <Heart className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform" />
                 Request Blood Urgently
-                <Heart className="ml-2 w-5 h-5 group-hover:scale-110 transition-transform" />
               </Link>
             </Button>
             <Button
@@ -67,9 +67,9 @@ const Hero = () => {
               asChild
               className="text-base px-10 py-7 font-semibold bg-white/10 border-white/30 text-white hover:bg-white hover:text-navy-deep group rounded-full backdrop-blur-sm"
             >
-              <Link to="/register">
+              <Link to="/register" className="flex items-center">
+                <Activity className="mr-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 Become a Donor
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
           </div>
@@ -77,8 +77,8 @@ const Hero = () => {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-5xl mx-auto">
             {[
-              { value: "1,738+", label: "Units Donated" },
-              { value: "264+", label: "Active Donors" },
+              { value: "25,000+", label: "Units Donated" },
+              { value: "3,500+", label: "Active Donors" },
               { value: "5,214+", label: "Lives Saved" },
               { value: "24/7", label: "Support" },
             ].map((stat, index) => (

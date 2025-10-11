@@ -120,7 +120,7 @@ const ImpactStats = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
             icon={<Droplet className="w-8 h-8 text-primary" />}
-            value={1738}
+            value={25000}
             label="Blood Units Collected"
             delay={0}
             color="red"
@@ -134,7 +134,7 @@ const ImpactStats = () => {
           />
           <StatCard
             icon={<Users className="w-8 h-8 text-secondary" />}
-            value={264}
+            value={3500}
             label="Active Donors"
             suffix="+"
             delay={200}

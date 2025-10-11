@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Menu, X } from "lucide-react";
-import logo from "@/assets/aashayein-logo-new.png";
-import jecrcLogo from "@/assets/jecrc-logo.jpg";
+import { Menu, X, Heart, UserPlus } from "lucide-react";
+import logo from "@/assets/aashayein-logo-new.webp";
+import jecrcLogo from "@/assets/jecrc-logo-new.webp";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -80,7 +80,10 @@ const Navigation = () => {
               asChild
               className="pulse-urgent shadow-blood font-semibold"
             >
-              <Link to="/request">URGENT: Blood Request</Link>
+              <Link to="/request" className="flex items-center">
+                <Heart className="mr-2 w-4 h-4" />
+                URGENT: Blood Request
+              </Link>
             </Button>
           </div>
 
@@ -117,10 +120,16 @@ const Navigation = () => {
               ))}
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
                 <Button variant="outline" size="default" asChild className="w-full">
-                  <Link to="/register">Register as Donor</Link>
+                  <Link to="/register" className="flex items-center justify-center">
+                    <UserPlus className="mr-2 w-4 h-4" />
+                    Register as Donor
+                  </Link>
                 </Button>
                 <Button size="default" asChild className="w-full pulse-urgent">
-                  <Link to="/request">Request Blood/SDP</Link>
+                  <Link to="/request" className="flex items-center justify-center">
+                    <Heart className="mr-2 w-4 h-4" />
+                    Request Blood/SDP
+                  </Link>
                 </Button>
               </div>
             </div>

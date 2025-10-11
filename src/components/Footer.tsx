@@ -110,8 +110,8 @@ const Footer = () => {
                 <Mail className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
                 <div>
                   <div className="text-sm font-medium mb-1">Email</div>
-                  <a href="mailto:help@aashayein.org" className="text-gray-400 hover:text-white text-sm">
-                    help@aashayein.org
+                  <a href="mailto:aashayein@jecrc.ac.in" className="text-gray-400 hover:text-white text-sm">
+                    aashayein@jecrc.ac.in
                   </a>
                 </div>
               </li>
@@ -120,7 +120,7 @@ const Footer = () => {
                 <div>
                   <div className="text-sm font-medium mb-1">Address</div>
                   <p className="text-gray-400 text-sm">
-                    Mumbai, Maharashtra<br />India
+                    Jaipur, Rajasthan, India
                   </p>
                 </div>
               </li>

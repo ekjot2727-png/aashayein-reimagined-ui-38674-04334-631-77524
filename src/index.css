@@ -310,4 +310,9 @@ All colors MUST be HSL.
   .transition-smooth {
     transition: var(--transition-smooth);
   }
+  
+  /* Hide Lovable badge */
+  [data-lovable-badge] {
+    display: none !important;
+  }
 }
