@@ -30,8 +30,8 @@ const Navigation = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-gradient-to-r from-sunrise-gold/40 via-sunrise-gold/20 to-sunrise-gold/40 backdrop-blur-lg shadow-elegant border-b border-sunrise-gold/50"
-          : "bg-gradient-to-r from-sunrise-gold/30 via-sunrise-gold/15 to-sunrise-gold/30 backdrop-blur-md"
+          ? "bg-gradient-to-r from-blood-red/40 via-blood-red/20 to-blood-red/40 backdrop-blur-lg shadow-elegant border-b border-blood-red/50"
+          : "bg-gradient-to-r from-blood-red/30 via-blood-red/15 to-blood-red/30 backdrop-blur-md"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,10 +58,10 @@ const Navigation = () => {
                 to={link.path}
                 className={`text-sm font-semibold transition-smooth relative group ${
                   location.pathname === link.path
-                    ? "text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(249,168,38,0.6)]"
-                    : "text-[hsl(var(--sunrise-gold))] hover:text-[hsl(var(--sunrise-gold))] hover:drop-shadow-[0_0_12px_rgba(249,168,38,0.8)]"
+                    ? "text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(216,27,96,0.6)]"
+                    : "text-[hsl(var(--sunrise-gold))] hover:text-[hsl(var(--sunrise-gold))] hover:drop-shadow-[0_0_12px_rgba(216,27,96,0.8)]"
                 }`}
-                style={{ textShadow: location.pathname === link.path ? '0 0 10px rgba(249, 168, 38, 0.5)' : '' }}
+                style={{ textShadow: location.pathname === link.path ? '0 0 10px rgba(216, 27, 96, 0.5)' : '' }}
               >
                 {link.name}
                 <span
@@ -86,7 +86,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(249,168,38,0.6)]"
+            className="md:hidden p-2 text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(216,27,96,0.6)]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -108,7 +108,7 @@ const Navigation = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`text-sm font-semibold py-2 ${
                     location.pathname === link.path
-                      ? "text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(249,168,38,0.6)]"
+                      ? "text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(216,27,96,0.6)]"
                       : "text-[hsl(var(--sunrise-gold))]"
                   }`}
                 >
