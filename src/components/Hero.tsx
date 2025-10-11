@@ -16,13 +16,10 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-navy-deep/95 via-navy-base/90 to-navy-deep/95" />
       </div>
 
-      {/* Animated Elements - Colorful Heartbeat */}
+      {/* Animated Elements - Enhanced Heartbeat */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/40 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/40 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-purple-500/35 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute bottom-1/3 left-1/3 w-80 h-80 bg-pink-500/35 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
-        <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-orange-500/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.75s' }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       {/* Content */}
