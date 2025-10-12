@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import ImpactStats from "@/components/ImpactStats";
-import MythsFacts from "@/components/MythsFacts";
+import InteractiveMythsFacts from "@/components/InteractiveMythsFacts";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 
@@ -12,7 +12,7 @@ const Index = () => {
       <main>
         <Hero />
         <ImpactStats />
-        <MythsFacts />
+        <InteractiveMythsFacts />
       </main>
       <Footer />
       <ChatBot />

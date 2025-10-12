@@ -4,6 +4,8 @@ import { Button } from "./ui/button";
 import { Menu, X, Heart, UserPlus } from "lucide-react";
 import logo from "@/assets/aashayein-logo-new.webp";
 import jecrcLogo from "@/assets/jecrc-logo-new.webp";
+import ThemeToggle from "./ThemeToggle";
+import LanguageSelector from "./LanguageSelector";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -73,12 +75,14 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex">
+          {/* CTA Button & Settings */}
+          <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
+            <LanguageSelector />
             <Button
               size="default"
               asChild
-              className="pulse-urgent shadow-blood font-semibold"
+              className="pulse-urgent shadow-blood font-semibold focus-visible:ring-2 focus-visible:ring-accent"
             >
               <Link to="/request" className="flex items-center">
                 <Heart className="mr-2 w-4 h-4" />
@@ -87,17 +91,22 @@ const Navigation = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(249,168,38,0.6)]"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+          {/* Mobile Menu Button & Settings */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <LanguageSelector />
+            <button
+              className="p-2 text-[hsl(var(--sunrise-gold))] drop-shadow-[0_0_8px_rgba(249,168,38,0.6)] focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

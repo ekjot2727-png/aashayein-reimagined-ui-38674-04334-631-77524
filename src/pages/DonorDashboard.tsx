@@ -3,7 +3,10 @@ import Footer from "@/components/Footer";
 import BackButton from "@/components/BackButton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Droplet, Award, User } from "lucide-react";
+import { Calendar, Droplet, Award, User, Download, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { exportToPDF, exportToCSV } from "@/utils/exportHelpers";
+import { toast } from "sonner";
 
 const DonorDashboard = () => {
   const donorInfo = {
@@ -25,9 +28,9 @@ const DonorDashboard = () => {
       <Navigation />
       <BackButton />
       <main className="pt-20">
-        <section className="py-16 bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+        <section className="py-16 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 animate-fade-in">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
                 Donor Dashboard
               </h1>
@@ -38,10 +41,10 @@ const DonorDashboard = () => {
 
             {/* Profile Overview */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-              <Card className="shadow-elevated">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Card className="shadow-elevated hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-gradient-to-br from-primary/5 to-transparent">
                   <CardTitle className="text-sm font-medium">Total Donations</CardTitle>
-                  <Droplet className="h-4 w-4 text-primary" />
+                  <Droplet className="h-5 w-5 text-primary" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">{donorInfo.totalDonations}</div>
@@ -49,10 +52,10 @@ const DonorDashboard = () => {
                 </CardContent>
               </Card>
 
-              <Card className="shadow-elevated">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Card className="shadow-elevated hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-gradient-to-br from-secondary/5 to-transparent">
                   <CardTitle className="text-sm font-medium">Blood Type</CardTitle>
-                  <User className="h-4 w-4 text-primary" />
+                  <User className="h-5 w-5 text-primary" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">{donorInfo.bloodType}</div>
@@ -60,10 +63,10 @@ const DonorDashboard = () => {
                 </CardContent>
               </Card>
 
-              <Card className="shadow-elevated">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Card className="shadow-elevated hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-gradient-to-br from-accent/5 to-transparent">
                   <CardTitle className="text-sm font-medium">Last Donation</CardTitle>
-                  <Calendar className="h-4 w-4 text-primary" />
+                  <Calendar className="h-5 w-5 text-primary" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">{new Date(donorInfo.lastDonation).toLocaleDateString()}</div>
@@ -71,13 +74,13 @@ const DonorDashboard = () => {
                 </CardContent>
               </Card>
 
-              <Card className="shadow-elevated">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Card className="shadow-elevated hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-gradient-to-br from-success/5 to-transparent">
                   <CardTitle className="text-sm font-medium">Achievement</CardTitle>
-                  <Award className="h-4 w-4 text-primary" />
+                  <Award className="h-5 w-5 text-success" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">Gold</div>
+                  <div className="text-2xl font-bold text-success">Gold</div>
                   <p className="text-xs text-muted-foreground">10+ donations</p>
                 </CardContent>
               </Card>
@@ -86,15 +89,45 @@ const DonorDashboard = () => {
             {/* Donation History */}
             <Card className="shadow-elevated">
               <CardHeader>
-                <CardTitle>Donation History</CardTitle>
-                <CardDescription>Your complete donation record</CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle>Donation History</CardTitle>
+                    <CardDescription>Your complete donation record</CardDescription>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        exportToPDF(donationHistory, donorInfo.name, donorInfo.bloodType);
+                        toast.success("PDF exported successfully!");
+                      }}
+                      className="focus-visible:ring-2 focus-visible:ring-accent"
+                    >
+                      <FileText className="w-4 h-4 mr-2" />
+                      Export PDF
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        exportToCSV(donationHistory);
+                        toast.success("CSV exported successfully!");
+                      }}
+                      className="focus-visible:ring-2 focus-visible:ring-accent"
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Export CSV
+                    </Button>
+                  </div>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {donationHistory.map((donation) => (
                     <div
                       key={donation.id}
-                      className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                      className="flex items-center justify-between p-4 border-2 rounded-lg hover:bg-muted/50 hover:border-primary/20 transition-all focus-within:ring-2 focus-within:ring-accent"
                     >
                       <div className="flex items-center gap-4">
                         <div className="p-2 bg-primary/10 rounded-full">

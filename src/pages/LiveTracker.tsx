@@ -5,6 +5,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Phone, Droplet } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import InteractiveMap from "@/components/InteractiveMap";
+import VerifiedBadge from "@/components/VerifiedBadge";
+import CopyableContact from "@/components/CopyableContact";
 
 const LiveTracker = () => {
   const donors = [
@@ -32,17 +35,10 @@ const LiveTracker = () => {
               </p>
             </div>
 
-            {/* Map Placeholder */}
-            <Card className="mb-8 overflow-hidden shadow-elevated">
-              <div className="h-96 bg-gradient-to-br from-primary/5 to-secondary/5 relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="w-16 h-16 text-primary mx-auto mb-4 animate-pulse" />
-                    <p className="text-muted-foreground">Interactive Map Coming Soon</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
+            {/* Interactive Map */}
+            <div className="mb-8">
+              <InteractiveMap donors={donors} />
+            </div>
 
             {/* Donors List */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -51,7 +47,10 @@ const LiveTracker = () => {
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div>
-                        <CardTitle className="text-xl">{donor.name}</CardTitle>
+                        <div className="flex items-center gap-2 mb-2">
+                          <CardTitle className="text-xl">{donor.name}</CardTitle>
+                          <VerifiedBadge verified={donor.available} donationCount={5} />
+                        </div>
                         <CardDescription className="flex items-center gap-2 mt-2">
                           <MapPin className="w-4 h-4" />
                           {donor.distance} away
@@ -69,7 +68,7 @@ const LiveTracker = () => {
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Phone className="w-4 h-4" />
-                      <span>{donor.phone}</span>
+                      <CopyableContact text={donor.phone} type="phone" />
                     </div>
                     {donor.available && (
                       <Button className="w-full" size="sm">

@@ -2,9 +2,10 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import BackButton from "@/components/BackButton";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Quote } from "lucide-react";
 
 const Gallery = () => {
-  // Demo donor images - using placeholder images
   const galleryImages = [
     {
       id: 1,
@@ -44,6 +45,30 @@ const Gallery = () => {
     },
   ];
 
+  const testimonials = [
+    {
+      id: 1,
+      name: "Priya Sharma",
+      role: "Blood Recipient",
+      testimonial: "Thanks to Aashayein, I received blood within hours during my emergency. The platform saved my life!",
+      bloodType: "A+",
+    },
+    {
+      id: 2,
+      name: "Rahul Mehta",
+      role: "Regular Donor",
+      testimonial: "Donating blood through Aashayein has been the most rewarding experience. Knowing I've helped save lives gives me immense satisfaction.",
+      bloodType: "O+",
+    },
+    {
+      id: 3,
+      name: "Dr. Anjali Verma",
+      role: "Hematologist",
+      testimonial: "Aashayein has revolutionized how we connect with donors. The platform is efficient, reliable, and truly life-saving.",
+      bloodType: "B+",
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       <Navigation />
@@ -60,7 +85,8 @@ const Gallery = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Photo Gallery */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {galleryImages.map((item) => (
                 <Card key={item.id} className="shadow-elevated hover:shadow-lg transition-all duration-300 hover-scale overflow-hidden">
                   <div className="aspect-video overflow-hidden">
@@ -76,6 +102,40 @@ const Gallery = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+
+            {/* Testimonials Section */}
+            <div className="mt-16">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Stories That Inspire
+                </h2>
+                <p className="text-lg text-muted-foreground">
+                  Hear from donors and recipients who have experienced the impact of blood donation
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {testimonials.map((item) => (
+                  <Card key={item.id} className="shadow-elevated hover:shadow-lg transition-all duration-300 p-6">
+                    <div className="mb-4">
+                      <Quote className="w-10 h-10 text-primary opacity-30" />
+                    </div>
+                    <p className="text-muted-foreground mb-6 italic leading-relaxed">
+                      "{item.testimonial}"
+                    </p>
+                    <div className="flex items-center justify-between border-t pt-4">
+                      <div>
+                        <h4 className="font-bold">{item.name}</h4>
+                        <p className="text-sm text-muted-foreground">{item.role}</p>
+                      </div>
+                      <Badge variant="outline" className="text-primary border-primary">
+                        {item.bloodType}
+                      </Badge>
+                    </div>
+                  </Card>
+                ))}
+              </div>
             </div>
           </div>
         </section>
