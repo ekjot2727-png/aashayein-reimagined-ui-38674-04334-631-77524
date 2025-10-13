@@ -4,10 +4,11 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { AlertCircle, Phone, MapPin } from "lucide-react";
-import { useState } from "react";
+import { useState, KeyboardEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { indianStates, citiesByState } from "@/utils/indianLocations";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface EmergencyRequestProps {
   onSuccess?: () => void;
@@ -16,6 +17,7 @@ interface EmergencyRequestProps {
 const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     bloodType: "",
     units: "",
@@ -38,6 +40,14 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
       formData.state &&
       formData.city
     );
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>, nextFieldId?: string) => {
+    if (e.key === "Enter" && nextFieldId) {
+      e.preventDefault();
+      const nextField = document.getElementById(nextFieldId);
+      nextField?.focus();
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -68,10 +78,10 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
           <div className="bg-gradient-to-r from-primary to-primary/80 p-6 text-white">
             <div className="flex items-center gap-3 mb-2">
               <AlertCircle className="w-8 h-8 animate-pulse" />
-              <h2 className="text-3xl font-bold">Emergency Blood/SDP Request</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold">{t("title.emergencyRequest")}</h2>
             </div>
-            <p className="text-white/90">
-              Submit your urgent request and we'll connect you with donors immediately
+            <p className="text-white/90 text-sm sm:text-base">
+              {t("title.emergencyDesc")}
             </p>
           </div>
 
@@ -81,7 +91,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="bloodType" className="text-sm font-semibold">
-                  Blood Type Required *
+                  {t("form.bloodType")} *
                 </Label>
                 <Select
                   value={formData.bloodType}
@@ -90,7 +100,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
                   }
                 >
                   <SelectTrigger id="bloodType" className="h-12">
-                    <SelectValue placeholder="Select blood type" />
+                    <SelectValue placeholder={t("form.selectBloodType")} />
                   </SelectTrigger>
                   <SelectContent>
                     {bloodTypes.map((type) => (
@@ -104,7 +114,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
 
               <div className="space-y-2">
                 <Label htmlFor="units" className="text-sm font-semibold">
-                  Units Required *
+                  {t("form.units")} *
                 </Label>
                 <Input
                   id="units"
@@ -116,6 +126,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
                   onChange={(e) =>
                     setFormData({ ...formData, units: e.target.value })
                   }
+                  onKeyDown={(e) => handleKeyDown(e, "patientName")}
                 />
               </div>
             </div>
@@ -123,7 +134,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
             {/* Patient Name */}
             <div className="space-y-2">
               <Label htmlFor="patientName" className="text-sm font-semibold">
-                Patient Name *
+                {t("form.patientName")} *
               </Label>
               <Input
                 id="patientName"
@@ -133,13 +144,14 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
                 onChange={(e) =>
                   setFormData({ ...formData, patientName: e.target.value })
                 }
+                onKeyDown={(e) => handleKeyDown(e, "hospitalName")}
               />
             </div>
 
             {/* Hospital Name */}
             <div className="space-y-2">
               <Label htmlFor="hospitalName" className="text-sm font-semibold">
-                Hospital Name *
+                {t("form.hospitalName")} *
               </Label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
@@ -151,6 +163,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
                   onChange={(e) =>
                     setFormData({ ...formData, hospitalName: e.target.value })
                   }
+                  onKeyDown={(e) => handleKeyDown(e, "contactNumber")}
                 />
               </div>
             </div>
@@ -158,7 +171,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
             {/* Contact Number */}
             <div className="space-y-2">
               <Label htmlFor="contactNumber" className="text-sm font-semibold">
-                Contact Number *
+                {t("form.contactNumber")} *
               </Label>
               <div className="relative">
                 <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
@@ -171,6 +184,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
                   onChange={(e) =>
                     setFormData({ ...formData, contactNumber: e.target.value })
                   }
+                  onKeyDown={(e) => handleKeyDown(e, "state")}
                 />
               </div>
             </div>
@@ -179,7 +193,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="state" className="text-sm font-semibold">
-                  State *
+                  {t("form.state")} *
                 </Label>
                 <Select
                   value={formData.state}
@@ -188,9 +202,9 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
                   }
                 >
                   <SelectTrigger id="state" className="h-12">
-                    <SelectValue placeholder="Select state" />
+                    <SelectValue placeholder={t("form.selectState")} />
                   </SelectTrigger>
-                  <SelectContent className="max-h-60 bg-card">
+                  <SelectContent className="max-h-60 bg-card z-50">
                     {indianStates.map((state) => (
                       <SelectItem key={state} value={state}>
                         {state}
@@ -202,7 +216,7 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
 
               <div className="space-y-2">
                 <Label htmlFor="city" className="text-sm font-semibold">
-                  City *
+                  {t("form.city")} *
                 </Label>
                 <Select
                   value={formData.city}
@@ -213,10 +227,10 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
                 >
                   <SelectTrigger id="city" className="h-12">
                     <SelectValue
-                      placeholder={formData.state ? "Select city" : "Select state first"}
+                      placeholder={formData.state ? t("form.selectCity") : t("form.selectStateFirst")}
                     />
                   </SelectTrigger>
-                  <SelectContent className="max-h-60 bg-card">
+                  <SelectContent className="max-h-60 bg-card z-50">
                     {formData.state &&
                       citiesByState[formData.state]?.map((city) => (
                         <SelectItem key={city} value={city}>
@@ -233,13 +247,13 @@ const EmergencyRequest = ({ onSuccess }: EmergencyRequestProps) => {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full pulse-urgent shadow-blood text-lg font-semibold"
+                className="w-full pulse-urgent shadow-blood text-base sm:text-lg font-semibold"
                 disabled={!isFormValid()}
               >
-                Submit Emergency Request
+                {t("form.submit")}
               </Button>
-              <p className="text-sm text-muted-foreground text-center mt-4">
-                Our team responds within 15 minutes • Available 24/7
+              <p className="text-xs sm:text-sm text-muted-foreground text-center mt-4">
+                {t("form.responseTime")}
               </p>
             </div>
           </form>

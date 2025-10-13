@@ -25,13 +25,13 @@ const ThemeToggle = () => {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="rounded-full focus-visible:ring-2 focus-visible:ring-accent"
+      className="rounded-full focus-visible:ring-2 focus-visible:ring-accent text-[hsl(var(--sunrise-gold))] hover:text-[hsl(var(--sunrise-gold))] hover:drop-shadow-[0_0_12px_rgba(249,168,38,0.8)]"
       aria-label="Toggle theme"
     >
       {theme === "light" ? (
-        <Moon className="h-5 w-5 transition-transform hover:rotate-12" />
+        <Moon className="h-5 w-5 transition-transform hover:rotate-12 drop-shadow-[0_0_8px_rgba(249,168,38,0.6)]" />
       ) : (
-        <Sun className="h-5 w-5 transition-transform hover:rotate-180" />
+        <Sun className="h-5 w-5 transition-transform hover:rotate-180 drop-shadow-[0_0_8px_rgba(249,168,38,0.6)]" />
       )}
     </Button>
   );

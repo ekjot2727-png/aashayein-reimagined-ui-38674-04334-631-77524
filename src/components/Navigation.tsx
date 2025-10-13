@@ -6,11 +6,13 @@ import logo from "@/assets/aashayein-logo-new.webp";
 import jecrcLogo from "@/assets/jecrc-logo-new.webp";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSelector from "./LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,11 +23,11 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Gallery", path: "/gallery" },
-    { name: "Contact Us", path: "/contact" },
-    { name: "Donate", path: "/donate" },
+    { name: t("nav.home"), path: "/" },
+    { name: t("nav.about"), path: "/about" },
+    { name: t("nav.gallery"), path: "/gallery" },
+    { name: t("nav.contact"), path: "/contact" },
+    { name: t("nav.donate"), path: "/donate" },
   ];
 
   return (
@@ -53,7 +55,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-12">
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -86,7 +88,7 @@ const Navigation = () => {
             >
               <Link to="/request" className="flex items-center">
                 <Heart className="mr-2 w-4 h-4" />
-                URGENT: Blood Request
+                {t("nav.urgent")}
               </Link>
             </Button>
           </div>
@@ -131,13 +133,13 @@ const Navigation = () => {
                 <Button variant="outline" size="default" asChild className="w-full">
                   <Link to="/register" className="flex items-center justify-center">
                     <UserPlus className="mr-2 w-4 h-4" />
-                    Register as Donor
+                    {t("nav.register")}
                   </Link>
                 </Button>
                 <Button size="default" asChild className="w-full pulse-urgent">
                   <Link to="/request" className="flex items-center justify-center">
                     <Heart className="mr-2 w-4 h-4" />
-                    Request Blood/SDP
+                    {t("nav.requestBlood")}
                   </Link>
                 </Button>
               </div>
