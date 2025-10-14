@@ -7,8 +7,10 @@ import { Calendar, Droplet, Award, User, Download, FileText } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { exportToPDF, exportToCSV } from "@/utils/exportHelpers";
 import { toast } from "sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const DonorDashboard = () => {
+  const { t } = useLanguage();
   const donorInfo = {
     name: "John Doe",
     bloodType: "A+",

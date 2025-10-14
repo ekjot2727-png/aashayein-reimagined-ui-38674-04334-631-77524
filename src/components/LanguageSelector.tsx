@@ -11,6 +11,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const languages = [
   { code: "en" as const, name: "English" },
   { code: "hi" as const, name: "हिंदी" },
+  { code: "pa" as const, name: "ਪੰਜਾਬੀ" },
 ];
 
 const LanguageSelector = () => {

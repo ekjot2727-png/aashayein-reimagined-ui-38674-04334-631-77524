@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { Heart, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="bg-navy-deep text-white">
@@ -14,12 +16,12 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <Heart className="w-8 h-8 text-primary" />
               <div>
-                <div className="font-bold text-xl">Aashayein</div>
-                <div className="text-xs text-gray-400">The Life Saviours</div>
+                <div className="font-bold text-xl">{t("footer.brand")}</div>
+                <div className="text-xs text-gray-400">{t("footer.tagline")}</div>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              Connecting blood and platelet donors with those in need. Together, we're saving lives every day.
+              {t("footer.description")}
             </p>
             {/* Social Links */}
             <div className="flex gap-3">

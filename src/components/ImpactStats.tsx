@@ -3,6 +3,7 @@ import { Card } from "./ui/card";
 import { Droplet, Users, Heart, TrendingUp } from "lucide-react";
 import iconBlood from "@/assets/icon-blood.png";
 import iconPlatelet from "@/assets/icon-platelet.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface StatCardProps {
   icon: React.ReactNode;
@@ -103,16 +104,18 @@ const StatCard = ({ icon, value, label, suffix = "", delay, color }: StatCardPro
 };
 
 const ImpactStats = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            Our Impact Dashboard
+            {t("impact.title")}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Real-time metrics of lives we're touching together
+            {t("impact.subtitle")}
           </p>
         </div>
 
@@ -121,21 +124,21 @@ const ImpactStats = () => {
           <StatCard
             icon={<Droplet className="w-8 h-8 text-primary" />}
             value={25000}
-            label="Blood Units Collected"
+            label={t("impact.bloodUnits")}
             delay={0}
             color="red"
           />
           <StatCard
             icon={<img src={iconPlatelet} alt="Platelet" className="w-8 h-8" />}
             value={542}
-            label="Platelet Donations"
+            label={t("impact.plateletDonations")}
             delay={100}
             color="cyan"
           />
           <StatCard
             icon={<Users className="w-8 h-8 text-secondary" />}
             value={3500}
-            label="Active Donors"
+            label={t("impact.activeDonors")}
             suffix="+"
             delay={200}
             color="cyan"
@@ -143,7 +146,7 @@ const ImpactStats = () => {
           <StatCard
             icon={<Heart className="w-8 h-8 text-primary" />}
             value={5214}
-            label="Lives Saved"
+            label={t("impact.livesSaved")}
             suffix="+"
             delay={300}
             color="red"
@@ -156,15 +159,14 @@ const ImpactStats = () => {
             <div className="flex items-start gap-4">
               <img src={iconBlood} alt="Blood donation" className="w-16 h-16" />
               <div>
-                <h3 className="text-2xl font-bold mb-2">Blood Donation</h3>
+                <h3 className="text-2xl font-bold mb-2">{t("impact.bloodDonation")}</h3>
                 <p className="text-muted-foreground mb-4">
-                  One blood donation can save up to 3 lives. Join our community of
-                  heroes today.
+                  {t("impact.bloodDonationDesc")}
                 </p>
                 <div className="flex items-center gap-2 text-sm">
                   <div className="flex items-center gap-1">
                     <div className="w-3 h-3 rounded-full bg-primary animate-pulse" />
-                    <span className="font-medium">42 Active Requests</span>
+                    <span className="font-medium">42 {t("impact.activeRequests")}</span>
                   </div>
                 </div>
               </div>
@@ -175,15 +177,14 @@ const ImpactStats = () => {
             <div className="flex items-start gap-4">
               <img src={iconPlatelet} alt="Platelet donation" className="w-16 h-16" />
               <div>
-                <h3 className="text-2xl font-bold mb-2">Platelet (SDP) Donation</h3>
+                <h3 className="text-2xl font-bold mb-2">{t("impact.plateletDonation")}</h3>
                 <p className="text-muted-foreground mb-4">
-                  Critical for cancer patients and surgical cases. Your platelets can
-                  make miracles happen.
+                  {t("impact.plateletDesc")}
                 </p>
                 <div className="flex items-center gap-2 text-sm">
                   <div className="flex items-center gap-1">
                     <div className="w-3 h-3 rounded-full bg-secondary animate-pulse" />
-                    <span className="font-medium">18 Active Requests</span>
+                    <span className="font-medium">18 {t("impact.activeRequests")}</span>
                   </div>
                 </div>
               </div>
